@@ -1,0 +1,19 @@
+--- js/simple_popup_blocks.js
++++ js/simple_popup_blocks.js
+@@ -110,10 +110,13 @@
+         modal_minimized_class = block_id + '-modal-minimized'
+         layout_class = '.' + modal_class + ' .spb-popup-main-wrapper'
+         // Wrap arround elements
+-        $(css_identity + block_id).once().
+-          wrap($('<div class="' + modal_class + '"></div>'))
++        once('wrap-arround', css_identity + block_id).forEach(function(elem) {
++          $(elem).wrap($('<div class="' + modal_class + '"></div>'))
++        });
+         // Hide the popup initially
+-        $('.' + modal_class).once().hide()
++        once('hide-popup', '.' + modal_class).forEach(function(elem) {
++          $(elem).hide()
++        })
+ 
+         // Wrap remaining elements
+         if ($(css_identity + block_id).closest('.spb-popup-main-wrapper').length) {
